@@ -22,6 +22,7 @@
 package org.pentaho.di.core.xml;
 
 import com.ctc.wstx.api.WstxInputProperties;
+import com.ctc.wstx.stax.WstxInputFactory;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -46,7 +47,7 @@ import javax.xml.stream.XMLStreamWriter;
 public class XMLFormatter {
   private static final String STEP_PREFIX = "  ";
 
-  private static XMLInputFactory INPUT_FACTORY = XMLInputFactory.newInstance();
+  private static XMLInputFactory INPUT_FACTORY = new WstxInputFactory();
   private static XMLOutputFactory OUTPUT_FACTORY = XMLOutputFactory.newInstance();
 
   static {
