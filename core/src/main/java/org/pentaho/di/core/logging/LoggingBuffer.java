@@ -26,6 +26,7 @@ import org.pentaho.di.core.Const;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.stream.Collectors;
@@ -39,7 +40,7 @@ import java.util.stream.Stream;
 public class LoggingBuffer {
   private String name;
 
-  private LinkedBlockingDeque<BufferLine> buffer;
+  private ConcurrentLinkedDeque<BufferLine> buffer;
 
   private int bufferSize;
 
@@ -51,7 +52,7 @@ public class LoggingBuffer {
 
   public LoggingBuffer( int bufferSize ) {
     this.bufferSize = bufferSize;
-    buffer = new LinkedBlockingDeque<BufferLine>();
+    buffer = new ConcurrentLinkedDeque<BufferLine>();
     layout = new KettleLogLayout( true );
     eventListeners = new CopyOnWriteArrayList<KettleLoggingEventListener>();
   }
